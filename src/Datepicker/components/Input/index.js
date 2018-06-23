@@ -16,10 +16,7 @@ export default class DatepickerInput extends Component {
       icon,
       input,
 
-      handlers: {
-        handlePopupOpen,
-        handlePopupClose
-      }
+      handlePopupOpen
 
     } = this.props;
 

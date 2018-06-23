@@ -22,7 +22,7 @@ export default class Datepicker extends Component {
 
       popupOpen,
 
-      handlers
+      ...rest
 
     } = this.props;
 
@@ -32,7 +32,7 @@ export default class Datepicker extends Component {
         flowing
         open={popupOpen}
         content={<DatepickerPopup {...this.props} />}
-        trigger={<DatepickerInput icon={icon} input={input} handlers={handlers} />}
+        trigger={<DatepickerInput icon={icon} input={input} {...rest} />}
       />
     )
   }
