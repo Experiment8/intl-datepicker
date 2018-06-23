@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import { Popup } from 'semantic-ui-react';
 import DatepickerInput from '../components/Input';
+import DatepickerPopup from '../components/Popup';
 
 import 'semantic-ui-css/semantic.min.css';
 
@@ -15,19 +16,23 @@ export default class Datepicker extends Component {
 
     const {
 
+      icon,
       popup,
       input,
 
-      popupOpen
+      popupOpen,
+
+      handlers
 
     } = this.props;
 
     return (
       <Popup
         { ...popup }
+        flowing
         open={popupOpen}
-        content="Add users to your feed"
-        trigger={<DatepickerInput { ...input } />}
+        content={<DatepickerPopup {...this.props} />}
+        trigger={<DatepickerInput icon={icon} input={input} handlers={handlers} />}
       />
     )
   }

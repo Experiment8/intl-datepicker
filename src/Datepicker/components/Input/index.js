@@ -12,13 +12,26 @@ export default class DatepickerInput extends Component {
   render() {
 
     const {
+
       icon,
-      ...rest
+      input,
+
+      handlers: {
+        handlePopupOpen,
+        handlePopupClose
+      }
+
     } = this.props;
 
     return(
-      <Input icon { ...rest }>
-         <input />
+      <Input
+        { ...input }
+        icon
+        onClick={handlePopupOpen}
+      >
+         <input
+           onFocus={handlePopupOpen}
+         />
          <Icon name={icon} />
       </Input>
     )

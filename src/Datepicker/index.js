@@ -12,7 +12,16 @@ const mapStateToProps = props => {
 
   return {
     ...props,
-    ...reducer
+    ...reducer,
+
+    handlers: {
+      handlePopupOpen: () => dispatch(
+        actions.openPopup()
+      ),
+      handlePopupClose: () => dispatch(
+        actions.closePopup()
+      )
+    }
   }
 }
 
