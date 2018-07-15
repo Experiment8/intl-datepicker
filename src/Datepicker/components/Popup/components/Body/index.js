@@ -6,8 +6,12 @@ import * as actions from './services/actions';
 
 const mapStateToProps = props => {
   const {
+
     dispatch,
     reducer
+
+
+
   } = props;
 
   return {
