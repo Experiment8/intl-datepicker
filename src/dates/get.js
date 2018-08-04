@@ -1,5 +1,5 @@
 import { LIMITS, EPOCH_FORMATS, DEFAULTS } from 'config';
-import { Day } from 'dates/instances';
+import { Day, Month, Year } from 'dates/instances';
 
 const getMonthLength = parsedDate => (
   new Date(
@@ -12,14 +12,10 @@ const getMonthLength = parsedDate => (
 // Week starts from Sunday
 export const weekDays = (offset = DEFAULTS.startOfWeek) => {
   const weekDays  = [];
-  const formatter = new Intl.DateTimeFormat('it', { weekday: 'short' });
 
   for (let d = offset; d < (offset + 7); d++) {
     const date  = new Date(1991, 11, 15 + d, 0);
     const day   = new Day(date);
-
-    day.text = formatter.format(date);
-
     weekDays.push(day);
   }
 
@@ -33,10 +29,10 @@ export const days = (
   format      = 'numeric',
   startOfWeek = DEFAULTS.startOfWeek
 ) => {
-  const daysContent     = [];
-  const currentYear     = currentDate.getFullYear();
-  const currentMonth    = currentDate.getMonth();
-  const currentWeekDay  = new Date(currentYear, currentMonth, 1, 0).getDay();
+  let daysBatch       = [];
+  let currentYear     = currentDate.getFullYear();
+  let currentMonth    = currentDate.getMonth();
+  let currentWeekDay  = new Date(currentYear, currentMonth, 1, 0).getDay();
 
   let currentMonthDays   = getMonthLength(currentDate);
   let previousMonthDays  = currentWeekDay - startOfWeek;
@@ -48,13 +44,13 @@ export const days = (
   let startingDay = -(previousMonthDays - 1);
   let endingDay   = currentMonthDays + nextMonthDays;
 
-  for (let i = startingDay; i <= endingDay; i++) {
-    let dayDate = new Date(currentYear, currentMonth, i, 0);
+  for (let d = startingDay; d <= endingDay; d++) {
+    let dayDate = new Date(currentYear, currentMonth, d, 0);
     let day     = new Day(dayDate);
-    daysContent.push(day);
+    daysBatch.push(day);
   }
 
-  return daysContent;
+  return daysBatch;
 };
 
 export const months = (
@@ -63,6 +59,16 @@ export const months = (
   limit       = LIMITS.months,
   format      = 'long'
 ) => {
+  let monthsBatch = [];
+  let currentYear = currentDate.getFullYear();
+
+  for (let m = 0; m < LIMITS.months; m++) {
+    let monthDate = new Date(currentYear, m, 1, 0);
+    let month     = new Month(monthDate);
+    monthsBatch.push(month);
+  }
+
+  return monthsBatch;
 };
 
 export const years = (
@@ -71,4 +77,16 @@ export const years = (
   limit       = LIMITS.years,
   format      = 'numeric'
 ) => {
+  let yearsBatch    = [];
+  let currentYear   = currentDate.getFullYear();
+  let startingYear  = currentYear - Math.floor(LIMITS.years / 2);
+  let endingYear    = currentYear + Math.ceil(LIMITS.years / 2);
+
+  for (let y = startingYear; y < endingYear; y++) {
+    let yearDate  = new Date(y, 0, 1, 0);
+    let year      = new Year(yearDate);
+    yearsBatch.push(year);
+  }
+
+  return yearsBatch;
 };

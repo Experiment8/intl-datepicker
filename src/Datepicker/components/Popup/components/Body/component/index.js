@@ -38,8 +38,13 @@ export default class PopupBody extends Component {
 
   componentDidMount() {
     const { batchLayout } = this.props;
-
     this.props.handleLayoutChange(batchLayout);
+  }
+
+  componentWillReceiveProps({ batchLayout }) {
+    if (batchLayout !== this.props.batchLayout) {
+      this.props.handleLayoutChange(batchLayout);
+    }
   }
 
   render() {
