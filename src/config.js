@@ -18,3 +18,9 @@ export const EPOCH_FORMATS = makeEnum({
   epochMonth  : 'epochMonth',
   epochYear   : 'epochYear'
 });
+
+export const GRID_LAYOUTS = {
+  [LAYOUTS.days]  : { columns: 7, rows: 5, width: 300 },
+  [LAYOUTS.months]: { columns: 3, rows: 4, width: 300 },
+  [LAYOUTS.years] : { columns: 3, rows: 4, width: 300 },
+};

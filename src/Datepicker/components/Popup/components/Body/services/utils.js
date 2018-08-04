@@ -6,14 +6,14 @@ export const getLayoutContent = (layout, date) => {
 
   switch(layout) {
 
-    case LAYOUTS.days:
-      return days();
+    case LAYOUTS.years:
+      return years();
 
     case LAYOUTS.months:
       return months();
 
-    case LAYOUTS.years:
-      return years();
+    default:
+      return days();
 
   }
 

@@ -1,6 +1,5 @@
 import { LIMITS, EPOCH_FORMATS } from 'config';
 import { Day } from 'dates/instances';
-import { toEpoch } from 'dates/convert';
 
 const getMonthLength = parsedDate => (
   new Date(

@@ -1,7 +1,8 @@
 import * as actions from './actions';
+import { LAYOUTS } from 'config';
 
 const initialState = {
-  batchLayout: 'days',
+  batchLayout: LAYOUTS.days,
   upperLimit : false
 };
 

@@ -1,15 +1,18 @@
 import * as actions from './actions';
 
 const initialState = {
-  content: []
+  batch: []
 }
 
-export default function (state, initialState, { type, payload }) {
+export default function (state = initialState, { type, payload }) {
 
   switch(type) {
 
     case actions.CHANGE_LAYOUT:
-      content: payload
+      return {
+        ...state,
+        batch: payload
+      }
 
     default:
       return state;
