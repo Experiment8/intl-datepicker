@@ -10,13 +10,16 @@ const mapStateToProps = props => {
     dispatch,
     reducer
 
-
-
   } = props;
 
   return {
+
     ...props,
-    ...reducer
+    ...reducer,
+
+    handleLayoutChange: payload => dispatch(
+      actions.changeLayout(payload)
+    )
   }
 }
 

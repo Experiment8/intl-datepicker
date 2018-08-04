@@ -1,4 +1,6 @@
-const availableBatches = ['days', 'months', 'years'];
+import { LAYOUTS } from 'config';
+
+const availableBatches = Object.values(LAYOUTS);
 
 export const getHigherBatch = currentBatch => {
 
