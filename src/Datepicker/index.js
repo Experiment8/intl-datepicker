@@ -11,6 +11,7 @@ const mapStateToProps = props => {
   } = props;
 
   return {
+
     ...props,
     ...reducer,
 

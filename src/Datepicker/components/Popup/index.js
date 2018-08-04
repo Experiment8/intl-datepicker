@@ -5,6 +5,7 @@ import reducer from './services/reducer';
 import * as actions from './services/actions';
 
 const mapStateToProps = props => {
+
   const {
     dispatch,
     reducer
@@ -15,16 +16,16 @@ const mapStateToProps = props => {
     ...props,
     ...reducer,
 
-    onPrevClick: () => dispatch(
+    handlePrevClick: () => dispatch(
       actions.prevBatch()
     ),
-    onNextClick: () => dispatch(
+    handleNextClick: () => dispatch(
       actions.nextBatch()
     ),
-    onTitleClick: () => dispatch(
-      actions.upperBatch()
-    )
-
+    handleTitleClick: (event, payload) => {
+      dispatch(actions.upperBatch(payload))
+      dispatch(actions.upperLimit(payload))
+    }
   }
 }
 

@@ -1,7 +1,8 @@
 import * as actions from './actions';
 
 const initialState = {
-  batchLayout: 'days'
+  batchLayout: 'days',
+  upperLimit : false
 };
 
 export default function (state = initialState, { type, payload }) {
@@ -18,6 +19,12 @@ export default function (state = initialState, { type, payload }) {
       return {
         ...state,
         batchLayout: payload
+      }
+
+    case actions.UPPER_LIMIT:
+      return {
+        ...state,
+        upperLimit: payload
       }
 
     default:

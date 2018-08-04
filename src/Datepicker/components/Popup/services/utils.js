@@ -7,8 +7,10 @@ export const getHigherBatch = currentBatch => {
   let currentIdx    = availableBatches.indexOf(currentBatch);
   let higherBranch  = availableBatches[(currentIdx + 1)];
 
-  if (higherBranch) return higherBranch;
-
-  if (!higherBranch) throw new Error('[INTL-DATEPICKER] higherBranch has not been found, reached last branch available.');
+  return higherBranch ? higherBranch : currentBatch;
 
 }
+
+export const isUpperLimit = higherBranch => (
+  !availableBatches[availableBatches.indexOf(higherBranch) + 1]
+)
