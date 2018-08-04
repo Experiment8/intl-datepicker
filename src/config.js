@@ -1,5 +1,9 @@
 import { makeEnum } from 'utils';
 
+export const DEFAULTS = {
+  startOfWeek: 3
+}
+
 export const LIMITS = {
   days  : 35, // fill up 7 columns and 5 lines
   months: 12,
@@ -20,7 +24,7 @@ export const EPOCH_FORMATS = makeEnum({
 });
 
 export const GRID_LAYOUTS = {
-  [LAYOUTS.days]  : { columns: 7, rows: 5, width: 300 },
-  [LAYOUTS.months]: { columns: 3, rows: 4, width: 300 },
-  [LAYOUTS.years] : { columns: 3, rows: 4, width: 300 },
+  [LAYOUTS.days]  : { columns: 7, rows: 5, width: 350 },
+  [LAYOUTS.months]: { columns: 3, rows: 4, width: 350 },
+  [LAYOUTS.years] : { columns: 3, rows: 4, width: 350 },
 };

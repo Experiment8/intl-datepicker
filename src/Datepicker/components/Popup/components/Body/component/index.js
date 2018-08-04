@@ -24,7 +24,7 @@ const getBatchRows = (batchLayout, batch) => {
       { gridRows.map((row) => (
         <Grid.Row key={row.key}>
           { row.cells.map((cell) => (
-            <Grid.Column key={cell.key}>
+            <Grid.Column align="center" key={cell.key}>
               { cell.value }
             </Grid.Column>
           )) }

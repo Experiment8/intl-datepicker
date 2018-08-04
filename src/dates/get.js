@@ -1,4 +1,4 @@
-import { LIMITS, EPOCH_FORMATS } from 'config';
+import { LIMITS, EPOCH_FORMATS, DEFAULTS } from 'config';
 import { Day } from 'dates/instances';
 
 const getMonthLength = parsedDate => (
@@ -9,11 +9,29 @@ const getMonthLength = parsedDate => (
   ).getDate()
 );
 
+// Week starts from Sunday
+export const weekDays = (offset = DEFAULTS.startOfWeek) => {
+  const weekDays  = [];
+  const formatter = new Intl.DateTimeFormat('en-GB', { weekday: 'short' });
+
+  for (let d = offset; d < (offset + 7); d++) {
+    const date  = new Date(1991, 11, 15 + d, 0);
+    const day   = new Day(date);
+
+    day.text = formatter.format(date);
+
+    weekDays.push(day);
+  }
+
+  return weekDays;
+}
+
 export const days = (
   currentDate = new Date(),
   dateFormat  = EPOCH_FORMATS.epoch,
   limit       = LIMITS.days,
-  format      = 'numeric'
+  format      = 'numeric',
+  startOfWeek = DEFAULTS.startOfWeek
 ) => {
   const daysContent = [];
 
@@ -27,7 +45,9 @@ export const days = (
   let startingDay = -(previousMonthDays - 1);
   let endingDay   = currentMonthDays + nextMonthDays;
 
-  for (let i = startingDay; i <= endingDay; i++) {
+  let weekDayOffset = new Date(currentYear, currentMonth, startingDay, 0).getDay() - startOfWeek;
+
+  for (let i = (startingDay - weekDayOffset); i <= endingDay; i++) {
     let dayDate = new Date(currentYear, currentMonth, i, 0);
     let day     = new Day(dayDate);
     daysContent.push(day);
