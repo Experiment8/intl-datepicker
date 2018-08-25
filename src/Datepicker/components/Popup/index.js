@@ -7,8 +7,10 @@ import * as actions from './services/actions';
 const mapStateToProps = props => {
 
   const {
+
     dispatch,
     reducer
+
   } = props;
 
   return {
@@ -16,15 +18,11 @@ const mapStateToProps = props => {
     ...props,
     ...reducer,
 
-    handlePrevClick: () => dispatch(
-      actions.prevBatch()
-    ),
-    handleNextClick: () => dispatch(
-      actions.nextBatch()
-    ),
+    handlePrevClick : (event, payload) => actions.prevBatch(payload, props),
+    handleNextClick : (event, payload) => actions.nextBatch(payload, props),
     handleTitleClick: (event, payload) => {
       dispatch(actions.upperBatch(payload))
-      dispatch(actions.upperLimit(payload))
+      dispatch(actions.upperScaleLimit(payload))
     }
   }
 }

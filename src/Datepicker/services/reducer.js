@@ -2,11 +2,13 @@ import * as actions from './actions';
 
 const initialState = {
 
-  popupOpen: false
+  popupOpen   : false,
+
+  currentDate : new Date()
 
 }
 
-export default function (state = initialState, { type }) {
+export default function (state = initialState, { type, payload }) {
 
   switch(type) {
 
@@ -20,6 +22,12 @@ export default function (state = initialState, { type }) {
       return {
         ...state,
         popupOpen: false
+      }
+
+    case actions.UPDATE_CURRENT_DATE:
+      return {
+        ...state,
+        currentDate: payload
       }
 
     default:

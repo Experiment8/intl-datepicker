@@ -2,8 +2,10 @@ import * as actions from './actions';
 import { LAYOUTS } from 'config';
 
 const initialState = {
-  batchLayout: LAYOUTS.days,
-  upperLimit : false
+
+  batchLayout     : LAYOUTS.days,
+  upperScaleLimit : false
+
 };
 
 export default function (state = initialState, { type, payload }) {
@@ -25,7 +27,7 @@ export default function (state = initialState, { type, payload }) {
     case actions.UPPER_LIMIT:
       return {
         ...state,
-        upperLimit: payload
+        upperScaleLimit: payload
       }
 
     default:

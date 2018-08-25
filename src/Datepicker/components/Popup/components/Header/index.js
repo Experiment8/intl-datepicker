@@ -15,7 +15,7 @@ export default class DatepickerHeader extends Component {
 
     const {
 
-      upperLimit,
+      upperScaleLimit,
       batchLayout,
 
       handlePrevClick,
@@ -26,17 +26,22 @@ export default class DatepickerHeader extends Component {
 
     return (
       <Grid centered columns={3} verticalAlign="middle">
-        <Grid.Column width={3} textAlign="center" onClick={handlePrevClick}>
+        <Grid.Column
+          width={3}
+          textAlign="center"
+          onClick={(e) => handlePrevClick(e, batchLayout)}>
           <Icon name="chevron left" />
         </Grid.Column>
         <Grid.Column
           width={10}
           textAlign="center"
-          onClick={(e) => { if (!upperLimit) handleTitleClick(e, batchLayout)}}
-          >
+          onClick={(e) => { if (!upperScaleLimit) handleTitleClick(e, batchLayout)}}>
           Agosto 2018
         </Grid.Column>
-        <Grid.Column width={3} textAlign="center" onClick={handleNextClick}>
+        <Grid.Column
+          width={3}
+          textAlign="center"
+          onClick={(e) => handleNextClick(e, batchLayout)}>
           <Icon name="chevron right" />
         </Grid.Column>
       </Grid>

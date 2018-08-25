@@ -1,6 +1,8 @@
 import {
+  getPrevBatch,
+  getNextBatch,
   getHigherBatch,
-  isUpperLimit
+  isupperScaleLimit
 } from './utils';
 
 export const NEXT_BATCH   = 'NEXT_BATCH';
@@ -8,20 +10,38 @@ export const PREV_BATCH   = 'PREV_BATCH';
 export const UPPER_BATCH  = 'UPPER_BATCH';
 export const UPPER_LIMIT  = 'UPPER_LIMIT';
 
-export const prevBatch = () => ({
-    type: PREV_BATCH
-});
+export const prevBatch = (payload, props) => {
+  const {
+    currentDate, handleCurrentDate, dispatch
+  } = props;
 
-export const nextBatch = () => ({
-  type: NEXT_BATCH
-});
+  const newDate = getPrevBatch(currentDate, payload);
+
+  dispatch({
+    type    : PREV_BATCH,
+    payload : newDate
+  });
+
+  handleCurrentDate(newDate);
+};
+
+export const nextBatch = (payload, props) => {
+  const {
+    currentDate, handleCurrentDate, dispatch
+  } = props;
+
+  dispatch({
+    type    : NEXT_BATCH,
+    payload : getNextBatch(currentDate, payload)
+  })
+};
 
 export const upperBatch = payload => ({
   type    : UPPER_BATCH,
   payload : getHigherBatch(payload)
 });
 
-export const upperLimit = payload => ({
+export const upperScaleLimit = payload => ({
   type    : UPPER_LIMIT,
-  payload : isUpperLimit(getHigherBatch(payload))
+  payload : isupperScaleLimit(getHigherBatch(payload))
 });

@@ -15,6 +15,13 @@ const mapStateToProps = props => {
     ...props,
     ...reducer,
 
+    handleCurrentDate: payload => dispatch(
+      actions.updateCurrentDate(payload)
+    ),
+    handleSelectedDate: payload => dispatch(
+      
+    ),
+
     handlePopupOpen: () => dispatch(
       actions.openPopup()
     ),

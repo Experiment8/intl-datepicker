@@ -1,5 +1,11 @@
 import { EPOCH_FORMATS } from 'config';
 
+export const decompose = date => ({
+  year  : date.getFullYear(),
+  month : date.getMonth(),
+  date  : date.getDate()
+});
+
 export const toEpoch = (epoch, epochFormat) => {
 
   switch(epochFormat) {
