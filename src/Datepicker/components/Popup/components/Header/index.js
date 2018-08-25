@@ -1,50 +1,30 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import { compose, withReducer, mapProps } from 'recompose';
 
-import { Grid, Icon } from 'semantic-ui-react';
+import PopupHeader from './component';
 
-export default class DatepickerHeader extends Component {
+import reducer from './services/reducer';
+import * as actions from './services/actions';
 
-  static propTypes = {
-    handlePrevClick   : PropTypes.func.isRequired,
-    handleNextClick   : PropTypes.func.isRequired,
-    handleTitleClick  : PropTypes.func
-  }
+const mapStateToProps = props => {
+  const {
 
-  render() {
+    reducer,
+    currentDate
 
-    const {
+  } = props;
 
-      upperScaleLimit,
-      batchLayout,
+  return {
+      ...props,
+      ...reducer,
 
-      handlePrevClick,
-      handleNextClick,
-      handleTitleClick
+      onInit: () => actions.changeCurrentLabel(currentDate, props),
 
-    } = this.props;
+      onCurrentDateChange: payload => actions.changeCurrentLabel(payload, props)
 
-    return (
-      <Grid centered columns={3} verticalAlign="middle">
-        <Grid.Column
-          width={3}
-          textAlign="center"
-          onClick={(e) => handlePrevClick(e, batchLayout)}>
-          <Icon name="chevron left" />
-        </Grid.Column>
-        <Grid.Column
-          width={10}
-          textAlign="center"
-          onClick={(e) => { if (!upperScaleLimit) handleTitleClick(e, batchLayout)}}>
-          Agosto 2018
-        </Grid.Column>
-        <Grid.Column
-          width={3}
-          textAlign="center"
-          onClick={(e) => handleNextClick(e, batchLayout)}>
-          <Icon name="chevron right" />
-        </Grid.Column>
-      </Grid>
-    )
   }
 }
+
+export default compose(
+  withReducer('reducer', 'dispatch', reducer),
+  mapProps(mapStateToProps)
+)(PopupHeader)

@@ -30,10 +30,14 @@ export const nextBatch = (payload, props) => {
     currentDate, handleCurrentDate, dispatch
   } = props;
 
+  const newDate = getNextBatch(currentDate, payload);
+
   dispatch({
     type    : NEXT_BATCH,
-    payload : getNextBatch(currentDate, payload)
-  })
+    payload : newDate
+  });
+
+  handleCurrentDate(newDate);
 };
 
 export const upperBatch = payload => ({

@@ -22,6 +22,21 @@ export const getPrevBatch = (currentDate, batchLayout) => {
 }
 
 export const getNextBatch = (currentDate, batchLayout) => {
+  let { year, month } = decompose(currentDate);
+
+  switch(batchLayout) {
+
+    case LAYOUTS.years:
+      let yearsOffset = Math.round(LIMITS.years / 2);
+      return new Date(year + yearsOffset, month, 1, 0);
+
+    case LAYOUTS.months:
+      return new Date(year + 1, month, 1, 0);
+
+    default:
+      return new Date(year, month + 1, 1, 0);
+
+  }
 
 }
 

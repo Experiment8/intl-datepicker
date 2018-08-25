@@ -28,3 +28,9 @@ export const GRID_LAYOUTS = {
   [LAYOUTS.months]: { columns: 3, rows: 4, width: 350 },
   [LAYOUTS.years] : { columns: 3, rows: 4, width: 350 },
 };
+
+export const TITLES_FORMAT = {
+  [LAYOUTS.days]  : { month: 'long', year: 'numeric' },
+  [LAYOUTS.months]: { year: 'numeric' },
+  [LAYOUTS.years] : { year: 'numeric' },
+};
