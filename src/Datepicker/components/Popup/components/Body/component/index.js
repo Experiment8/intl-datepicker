@@ -41,9 +41,14 @@ export default class PopupBody extends Component {
     this.props.handleLayoutChange(batchLayout);
   }
 
-  componentWillReceiveProps({ batchLayout }) {
+  componentWillReceiveProps({ batchLayout, currentDate }) {
+
     if (batchLayout !== this.props.batchLayout) {
       this.props.handleLayoutChange(batchLayout);
+    }
+
+    if (currentDate.valueOf() !== this.props.currentDate.valueOf()) {
+      this.props.handleCurrentDateChange(currentDate);
     }
   }
 

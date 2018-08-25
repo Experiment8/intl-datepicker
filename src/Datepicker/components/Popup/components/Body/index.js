@@ -8,7 +8,9 @@ const mapStateToProps = props => {
   const {
 
     dispatch,
-    reducer
+    reducer,
+
+    batch
 
   } = props;
 
@@ -19,6 +21,9 @@ const mapStateToProps = props => {
 
     handleLayoutChange: payload => dispatch(
       actions.changeLayout(payload)
+    ),
+    handleCurrentDateChange: payload => dispatch(
+      actions.changeCurrentDate(payload, batch)
     )
   }
 }
