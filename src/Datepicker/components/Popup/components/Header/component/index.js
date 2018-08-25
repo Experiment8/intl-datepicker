@@ -15,10 +15,16 @@ export default class DatepickerHeader extends Component {
     this.props.onCurrentDateChange(this.props.currentDate)
   }
 
-  componentWillReceiveProps({ currentDate }) {
+  componentWillReceiveProps({ currentDate, batchLayout }) {
+
     if (currentDate !== this.props.currentDate) {
       this.props.onCurrentDateChange(currentDate)
     }
+
+    if (batchLayout !== this.props.batchLayout) {
+      this.props.onLayoutChange(batchLayout)
+    }
+
   }
 
   render() {

@@ -19,7 +19,9 @@ const mapStateToProps = props => {
 
       onInit: () => actions.changeCurrentLabel(currentDate, props),
 
-      onCurrentDateChange: payload => actions.changeCurrentLabel(payload, props)
+      onCurrentDateChange: payload => actions.changeCurrentLabel(payload, props),
+
+      onLayoutChange: payload => actions.changeCurrentLabelLayout(payload, props)
 
   }
 }

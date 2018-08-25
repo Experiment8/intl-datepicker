@@ -14,3 +14,15 @@ export const changeCurrentLabel = (currentDate, props) => {
     payload : formatAs(currentDate, TITLES_FORMAT[batchLayout])
   });
 }
+
+export const changeCurrentLabelLayout = (batchLayout, props) => {
+  const {
+    dispatch,
+    currentDate
+  } = props;
+
+  dispatch({
+    type    : CHANGE_CURRENT_LABEL,
+    payload : formatAs(currentDate, TITLES_FORMAT[batchLayout])
+  });
+}
